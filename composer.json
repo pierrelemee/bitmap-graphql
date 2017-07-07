@@ -3,6 +3,9 @@
     "description": "Easily dive-in to GraphQL using Bitmap ORM",
     "type": "library",
     "require": {
+        "pierrelemee/bitmap": "^0"
+    },
+    "require-dev": {
         "silex/silex": "~2.0"
     },
     "license": "MIT",
@@ -11,5 +14,10 @@
             "name": "Pierre Lemée",
             "email": "pierre@pierrelemee.fr"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "src"
+        }
+    }
 }
