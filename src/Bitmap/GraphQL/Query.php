@@ -34,6 +34,11 @@ class Query
         return $this->isRoot() ? $this : $this->parent->getRoot();
     }
 
+    public function addField($field)
+    {
+        $this->fields[] = $field;
+    }
+
     /**
      * @param resource $in
      *

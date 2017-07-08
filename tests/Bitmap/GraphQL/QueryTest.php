@@ -3,7 +3,7 @@
 namespace Tests\Bitmap\GraphQL;
 
 use Bitmap\GraphQL\Query\Parser\QueryParser;
-use Bitmap\Query\Query;
+use Bitmap\GraphQL\Query;
 use PHPUnit\Framework\TestCase;
 
 class QueryTest extends TestCase

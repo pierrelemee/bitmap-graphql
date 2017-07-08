@@ -34,6 +34,11 @@ abstract class ParserState
 
     public abstract function onComma(QueryParser $parser);
 
+    public function onStart(QueryParser $parser)
+    {
+        // Override if needed
+    }
+
     public function onComplete(QueryParser $parser)
     {
         // Override if needed

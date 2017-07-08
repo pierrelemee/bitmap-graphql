@@ -6,9 +6,11 @@ use Bitmap\GraphQL\Query\Parser\QueryParser;
 
 class DefaultState extends ParserState
 {
+    const NAME = 'default';
+
     public function getName()
     {
-        return 'default';
+        return self::NAME;
     }
 
     public function isDefault()
@@ -18,7 +20,7 @@ class DefaultState extends ParserState
 
     public function onOpeningCurlyBracket(QueryParser $parser)
     {
-        // TODO: Implement onOpeningCurlyBracket() method.
+        $parser->setState(QueryState::NAME);
     }
 
     public function onClosingCurlyBracket(QueryParser $parser)

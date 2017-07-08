@@ -46,6 +46,7 @@ class QueryParser
                     $this->state->onComplete($this);
                 }
                 $this->state = $this->states[$state];
+                $this->state->onStart($this);
             } else {
                 throw new Exception("Unknown parser state $state");
             }
@@ -55,6 +56,11 @@ class QueryParser
     public function getQuery()
     {
         return $this->query;
+    }
+
+    public function setQuery(Query $query)
+    {
+        $this->query = $query;
     }
 
     /**
