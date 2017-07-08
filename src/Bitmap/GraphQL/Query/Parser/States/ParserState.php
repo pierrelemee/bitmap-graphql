@@ -2,21 +2,45 @@
 
 namespace Bitmap\GraphQL\Query\Parser\States;
 
-interface ParserState
+use Bitmap\GraphQL\Query\Parser\QueryParser;
+
+abstract class ParserState
 {
+    protected $buffer;
+
+    public function __construct()
+    {
+        $this->buffer = '';
+    }
+
+    public function clearbuffer()
+    {
+        $this->buffer = '';
+    }
+
     /**
      * @return string
      */
-    public function getName();
+    public abstract function getName();
 
     /**
      * @return bool
      */
-    public function isDefault();
+    public abstract function isDefault();
 
-    public function onOpeningCurlyBracket();
+    public abstract function onOpeningCurlyBracket(QueryParser $parser);
 
-    public function onClosingCurlyBracket();
+    public abstract function onClosingCurlyBracket(QueryParser $parser);
 
-    public function onComma();
+    public abstract function onComma(QueryParser $parser);
+
+    public function onComplete(QueryParser $parser)
+    {
+        // Override if needed
+    }
+
+    public function onCharacter(QueryParser $parser, $character)
+    {
+        $this->buffer .= $character;
+    }
 }

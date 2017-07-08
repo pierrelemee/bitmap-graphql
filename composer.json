@@ -6,7 +6,8 @@
         "pierrelemee/bitmap": "^0"
     },
     "require-dev": {
-        "silex/silex": "~2.0"
+        "silex/silex": "~2.0",
+        "phpunit/phpunit": "^6.2"
     },
     "license": "MIT",
     "authors": [
@@ -17,7 +18,8 @@
     ],
     "autoload": {
         "psr-4": {
-            "": "src"
+            "": "src",
+            "Tests\\": "tests"
         }
     }
 }

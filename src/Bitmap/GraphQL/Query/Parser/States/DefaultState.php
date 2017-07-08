@@ -2,7 +2,9 @@
 
 namespace Bitmap\GraphQL\Query\Parser\States;
 
-class DefaultState implements ParserState
+use Bitmap\GraphQL\Query\Parser\QueryParser;
+
+class DefaultState extends ParserState
 {
     public function getName()
     {
@@ -14,19 +16,23 @@ class DefaultState implements ParserState
         return true;
     }
 
-    public function onOpeningCurlyBracket()
+    public function onOpeningCurlyBracket(QueryParser $parser)
     {
         // TODO: Implement onOpeningCurlyBracket() method.
     }
 
-    public function onClosingCurlyBracket()
+    public function onClosingCurlyBracket(QueryParser $parser)
     {
         // TODO: Implement onClosingCurlyBracket() method.
     }
 
-    public function onComma()
+    public function onComma(QueryParser $parser)
     {
         // TODO: Implement onComma() method.
     }
 
+    public function onComplete(QueryParser $parser)
+    {
+        // TODO: Implement onComplete() method.
+    }
 }
