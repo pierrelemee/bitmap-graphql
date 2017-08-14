@@ -21,7 +21,7 @@ class Query
     /**
      * @return bool
      */
-    protected function isRoot()
+    public function isRoot()
     {
         return null === $this->parent;
     }
@@ -32,6 +32,14 @@ class Query
     protected function getRoot()
     {
         return $this->isRoot() ? $this : $this->parent->getRoot();
+    }
+
+    /**
+     * @return Query
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 
     /**
@@ -57,6 +65,12 @@ class Query
     public function getQuery($name)
     {
         return $this->queries[$name];
+    }
+
+    public function addQuery($name, Query $query)
+    {
+        $this->queries[$name] = $query;
+        $query->parent = $this;
     }
 
     /**
