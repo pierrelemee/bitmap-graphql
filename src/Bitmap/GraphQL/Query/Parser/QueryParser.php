@@ -74,7 +74,6 @@ class QueryParser
     {
         $this->query = null;
         foreach ($this->states as $state) {
-            echo $state->getName() . PHP_EOL;
             if ($state->isDefault()) {
                 $this->setState($state);
             }
