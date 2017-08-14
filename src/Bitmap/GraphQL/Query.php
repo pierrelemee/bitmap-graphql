@@ -34,9 +34,29 @@ class Query
         return $this->isRoot() ? $this : $this->parent->getRoot();
     }
 
+    /**
+     * @param string $name
+     *
+     * @return mixed
+     */
+    public function getField($name)
+    {
+        return $this->fields[$name];
+    }
+
     public function addField($field)
     {
         $this->fields[] = $field;
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return Query|null
+     */
+    public function getQuery($name)
+    {
+        return $this->queries[$name];
     }
 
     /**
