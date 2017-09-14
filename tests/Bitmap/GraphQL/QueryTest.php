@@ -8,6 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 class QueryTest extends TestCase
 {
+    const RESOURCE_QUERY_DIR = __DIR__ . "/resources/queries/";
     protected $parser;
 
     public function __construct($name = null, array $data = [], $dataName = '')
@@ -18,13 +19,17 @@ class QueryTest extends TestCase
 
     public function testQuery()
     {
-        $query = $this->parser->parse("{
-            artist {
-                name
-            }
-        }");
+        $query = $this->parser->parse($this->getResourceQuery("get_artist"));
 
         $this->assertEquals(Query::class, get_class($query));
         $this->assertEquals("artist", $query->getName());
+    }
+
+    protected function getResourceQuery($name) {
+        if (is_file($resource =  self::RESOURCE_QUERY_DIR . "$name.graphql")) {
+            return file_get_contents($resource);
+        }
+
+        throw new \Exception("No such resource $name");
     }
 }
