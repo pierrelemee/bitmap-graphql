@@ -25,5 +25,6 @@ class QueryTest extends TestCase
         }");
 
         $this->assertEquals(Query::class, get_class($query));
+        $this->assertEquals("artist", $query->getName());
     }
 }

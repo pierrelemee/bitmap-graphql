@@ -2,8 +2,11 @@
 
 namespace Bitmap\GraphQL;
 
+use Bitmap\Bitmap;
+
 class Query
 {
+    protected $name;
     /**
      * @var Query
      */
@@ -11,11 +14,44 @@ class Query
     protected $fields;
     protected $queries;
 
-    public function __construct(array $fields = [], $parent = null)
+    public function __construct(array $fields = [], $name = '', $parent = null)
     {
+        $this->name   = $name;
         $this->parent = $parent;
         $this->fields = $fields;
         $this->queries = [];
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return Query
+     */
+    public function getParent()
+    {
+        return $this->parent;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function hasParent()
+    {
+        return null !== $this->parent;
     }
 
     /**
@@ -55,6 +91,19 @@ class Query
     public function addField($field)
     {
         $this->fields[] = $field;
+    }
+
+    public function addQuery(Query $query)
+    {
+        $this->queries[$query->getName()] = $query;
+    }
+
+    public function execute() {
+        $mapper = Bitmap::current()->getMapper($this->name);
+        var_dump($mapper);
+        $class = $mapper->getClass();
+        var_dump($class);
+        return $class::select()->one();
     }
 
     /**

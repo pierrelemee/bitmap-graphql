@@ -13,6 +13,7 @@ class QueryState extends ParserState
      * @var Query $query
      */
     protected $query;
+    protected $count = 0;
 
     /**
      * @return string
@@ -53,11 +54,22 @@ class QueryState extends ParserState
 
     public function onStart(QueryParser $parser)
     {
+        /** @var Query $query */
         $this->query = new Query();
+        $this->clearbuffer();
     }
 
     public function onComplete(QueryParser $parser)
     {
         $parser->setQuery($this->query);
     }
+
+    public function onCharacter(QueryParser $parser, $character)
+    {
+        if (strlen(trim($character)) > 0) {
+            parent::onCharacter($parser, $character);
+        }
+    }
+
+
 }

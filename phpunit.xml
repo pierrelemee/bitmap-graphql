@@ -12,8 +12,8 @@
 >
 
     <testsuites>
-        <testsuite name="Bitmap Test Suite">
-            <directory>tests/Bitmap</directory>
+        <testsuite name="Bitmap GraphQL Test Suite">
+            <directory>tests/Bitmap/GraphQL</directory>
         </testsuite>
     </testsuites>
 </phpunit>
