@@ -13,7 +13,6 @@ class QueryState extends ParserState
      * @var Query $query
      */
     protected $query;
-    protected $count = 0;
 
     /**
      * @return string
@@ -33,7 +32,8 @@ class QueryState extends ParserState
     public function onOpeningCurlyBracket(QueryParser $parser)
     {
         $query = new Query();
-        $this->query->addQuery(trim($this->buffer), $query);
+        $this->query->setName(trim($this->buffer));
+        $this->query->addQuery($query);
         $this->query = $query;
     }
 

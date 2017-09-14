@@ -55,6 +55,14 @@ class Query
     }
 
     /**
+     * @param Query $parent
+     */
+    public function setParent(Query $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
      * @return bool
      */
     public function isRoot()
@@ -71,14 +79,6 @@ class Query
     }
 
     /**
-     * @return Query
-     */
-    public function getParent()
-    {
-        return $this->parent;
-    }
-
-    /**
      * @param string $name
      *
      * @return mixed
@@ -91,11 +91,6 @@ class Query
     public function addField($field)
     {
         $this->fields[] = $field;
-    }
-
-    public function addQuery(Query $query)
-    {
-        $this->queries[$query->getName()] = $query;
     }
 
     public function execute() {
@@ -116,9 +111,9 @@ class Query
         return $this->queries[$name];
     }
 
-    public function addQuery($name, Query $query)
+    public function addQuery(Query $query)
     {
-        $this->queries[$name] = $query;
+        $this->queries[] = $query;
         $query->parent = $this;
     }
 
