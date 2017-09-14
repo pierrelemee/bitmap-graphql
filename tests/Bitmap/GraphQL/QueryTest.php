@@ -25,11 +25,20 @@ class QueryTest extends TestCase
         $this->assertEquals("artist", $query->getName());
     }
 
-    protected function getResourceQuery($name) {
+    public function testQueryArtistById() {
+        $query = $this->parser->parse($this->getResourceQuery("get_artist_by_id", [12]));
+
+        $this->assertEquals(Query::class, get_class($query));
+        $this->assertEquals("artist", $query->getName());
+    }
+
+    protected function getResourceQuery($name, array $arguments = []) {
         if (is_file($resource =  self::RESOURCE_QUERY_DIR . "$name.graphql")) {
-            return file_get_contents($resource);
+            return vsprintf(file_get_contents($resource), $arguments);
         }
 
         throw new \Exception("No such resource $name");
     }
+
+
 }
